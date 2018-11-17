@@ -1,2 +1,3 @@
 Advokati.Web/Scripts/* linguist-vendored
-Advokati.Web/Content/* linguist-vendored
+Advokati.Web/Scripts/chart* linguist-vendored
+
