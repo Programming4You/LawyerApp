@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Advokati.Infrastructure.Model.Klijent>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="sidenav col-sm-3 col-md-3 col-lg-3">
+        <ul class="nav navbar-nav mainmenu">
+            <li>@Html.ActionLink("Advokati", "Index", "Advokats")</li>
+            <li>@Html.ActionLink("Klijenti", "Index", "Klijents")</li>
+            <li>@Html.ActionLink("Predmeti", "Index", "Predmets")</li>
+            <li>@Html.ActionLink("Podpredmeti", "Index", "Podpredmets")</li>
+            <li>@Html.ActionLink("Taskovi", "Index", "Tasks")</li>
+            <li>@Html.ActionLink("Grafikon", "GetData", "Home")</li>
+            <li>@Html.ActionLink("Statistika", "Statistika", "Tasks")</li>
+            <li>
+                <a href="">Izveštaji</a>
+                <ul class="submenu">
+                    <li><a href="~/Report/AdvokatiTasks.aspx">Advokati</a></li>
+                    <li><a href="~/Report/KlijentiTasks.aspx">Klijenti</a></li>
+                </ul>
+            </li>
+            <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+        </ul>
+    </div>
+
+    <div class="col-sm-9 col-md-9 col-lg-9" id="advokati">
+        @if (TempData["Success"] != null)
+        {
+            <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
+        }
+        <h3 class="text-center">Lista klijenata</h3>
+        <p>
+            @Html.ActionLink("Dodaj klijenta", "Create", null, new { @class = "btn btn-info" })
+        </p>
+        <br/>
+        @using (Html.BeginForm())
+        {
+            <p>
+                Pretraži po Nazivu klijenta: @Html.TextBox("SearchString")
+                <input type="submit" value="Search" />
+            </p>
+        }
+        <table class="table table-bordered">
+            <tr class="headerColor">
+                <th>
+                    @Html.DisplayNameFor(model => model.Naziv)
+                </th>
+            @if (Session["admin"] != null)
+            {
+                <th class="centerBtn">Administracija</th>
+            }
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(@Html.DisplayFor(modelItem => item.Naziv).ToHtmlString(), "Detalji", "Tasks", new { id = item.Id }, null)
+                    </td>
+                    @if (Session["admin"] != null)
+                    {
+                        <td class="centerBtn">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                        </td>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+</div>

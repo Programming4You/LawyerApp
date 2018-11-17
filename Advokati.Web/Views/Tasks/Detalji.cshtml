@@ -1,0 +1,105 @@
+﻿@using Advokati.Infrastructure.Model
+
+@model IEnumerable<Advokati.Infrastructure.Model.Task>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<input id="Id" name="Id" type="hidden">
+
+<div class="row">
+    <div class="sidenav col-sm-3 col-md-3 col-lg-3">
+        <ul class="nav navbar-nav mainmenu">
+            <li>@Html.ActionLink("Advokati", "Index", "Advokats")</li>
+            <li>@Html.ActionLink("Klijenti", "Index", "Klijents")</li>
+            <li>@Html.ActionLink("Predmeti", "Index", "Predmets")</li>
+            <li>@Html.ActionLink("Podpredmeti", "Index", "Podpredmets")</li>
+            <li>@Html.ActionLink("Taskovi", "Index", "Tasks")</li>
+            <li>@Html.ActionLink("Grafikon", "GetData", "Home")</li>
+            <li>@Html.ActionLink("Statistika", "Statistika", "Tasks")</li>
+            <li>
+                <a href="">Izveštaji</a>
+                <ul class="submenu">
+                    <li><a href="~/Report/AdvokatiTasks.aspx">Advokati</a></li>
+                    <li><a href="~/Report/KlijentiTasks.aspx">Klijenti</a></li>
+                </ul>
+            </li>
+            <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+        </ul>
+    </div>
+
+    <div class="col-sm-9 col-md-9 col-lg-9" id="advokati">
+        <h3 class="text-center">Spisak taskova za klijenta</h3>
+        <br /><br /><br />
+        <p>
+            @Html.ActionLink("Dodaj task", "Create", null, new { @class = "btn btn-info" })
+        </p>
+
+        <table class="table table-bordered">
+            <tr class="headerColor">
+                <th>
+                    Advokat
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Podpredmet.NazivPodpredmeta)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Datum)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UtrosenoVreme)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cena)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Placeno)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Opis)
+                </th>
+                @if (Session["admin"] != null)
+                {
+                    <th>Brisanje</th>
+                }
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Advokat.Ime)
+                        @Html.DisplayFor(modelItem => item.Advokat.Prezime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Podpredmet.NazivPodpredmeta)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Datum)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UtrosenoVreme)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cena)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Placeno)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Opis)
+                    </td>
+                    @if (Session["admin"] != null)
+                    {
+                        <td>
+                            @Html.ActionLink("Izmeni", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-sm form-control" })
+                            @Html.ActionLink("Obriši", "Delete", new {id = item.Id}, new {@class = "btn btn-danger btn-sm form-control"})
+                        </td>
+                    }
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

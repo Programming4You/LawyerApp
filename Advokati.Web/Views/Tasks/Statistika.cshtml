@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Advokati.Infrastructure.Model.ViewModel.StatistikaVM>
+
+@{
+    ViewBag.Title = "Statistika";
+}
+
+<h3 class="text-center">Statistika</h3>
+<br/>
+
+<div class="row">
+    <div class="sidenav col-sm-3 col-md-3 col-lg-3">
+        <ul class="nav navbar-nav mainmenu">
+            <li>@Html.ActionLink("Advokati", "Index", "Advokats")</li>
+            <li>@Html.ActionLink("Klijenti", "Index", "Klijents")</li>
+            <li>@Html.ActionLink("Predmeti", "Index", "Predmets")</li>
+            <li>@Html.ActionLink("Podpredmeti", "Index", "Podpredmets")</li>
+            <li>@Html.ActionLink("Taskovi", "Index", "Tasks")</li>
+            <li>@Html.ActionLink("Grafikon", "GetData", "Home")</li>
+            <li>@Html.ActionLink("Statistika", "Statistika", "Tasks")</li>
+            <li>
+                <a href="">Izveštaji</a>
+                <ul class="submenu">
+                    <li><a href="~/Report/AdvokatiTasks.aspx">Advokati</a></li>
+                    <li><a href="~/Report/KlijentiTasks.aspx">Klijenti</a></li>
+                </ul>
+            </li>
+            <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+        </ul>
+    </div>
+
+    <div class="col-sm-9 col-md-9 col-lg-9" id="advokati">
+
+        <table class="table table-bordered">
+            <tr class="headerColor">
+                <th>
+                    Advokat
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BrojTaskova)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BrojKlijenata)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BrojPodpredmeta)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UkupnoVreme)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Zarada)
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BrojTaskova)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BrojKlijenata)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BrojPodpredmeta)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UkupnoVreme)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Zarada)
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        <br />
+        <br />
+       @* <div>
+            @Html.ActionLink("Nazad", "Index")
+        </div>
+       *@
+    </div>
+</div>

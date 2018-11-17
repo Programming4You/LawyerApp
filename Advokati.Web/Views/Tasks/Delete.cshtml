@@ -1,0 +1,83 @@
+﻿@model Advokati.Infrastructure.Model.Task
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Brisanje</h2>
+
+<h3>Da li ste sigurni da želite da obrišete?</h3>
+<div>
+    <br/>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Advokat.Ime)
+            @Html.DisplayNameFor(model => model.Advokat.Prezime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Advokat.Ime)
+            @Html.DisplayFor(model => model.Advokat.Prezime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Podpredmet.NazivPodpredmeta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Podpredmet.NazivPodpredmeta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Datum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Datum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UtrosenoVreme)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UtrosenoVreme)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Cena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cena)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Placeno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Placeno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Opis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opis)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Nazad", "Index")
+        </div>
+    }
+</div>
+
+

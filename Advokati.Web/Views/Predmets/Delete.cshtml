@@ -1,0 +1,47 @@
+﻿@model Advokati.Infrastructure.Model.Predmet
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Brisanje predmeta</h2>
+
+<h3>Da li ste sigurni da želite da obrišete?</h3>
+<div>
+    <br />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Klijent.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Klijent.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NazivPredmeta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NazivPredmeta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sifra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sifra)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Nazad", "Index")
+        </div>
+    }
+</div>

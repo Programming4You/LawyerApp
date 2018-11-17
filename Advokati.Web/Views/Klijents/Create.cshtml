@@ -1,0 +1,74 @@
+﻿@using Advokati.Infrastructure.Model
+@model Advokati.Infrastructure.Model.Klijent
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Dodaj klijenta</h2>
+<br/>
+
+@using (Html.BeginForm("Create", "Klijents", FormMethod.Post, new { id = "myform" })) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+ 
+        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Naziv, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Naziv, new { htmlAttributes = new { @class = "form-control" }})
+                @Html.ValidationMessageFor(model => model.Naziv, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Advokat</label>
+            <div class="col-md-10">
+                <select name="AdvokatId" class="form-control">
+                    @foreach (Advokat a in ViewBag.advokati)
+                    {
+                        <option value="@a.Id">@a.Ime @a.Prezime</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Save" class="btn btn-info" id="btnSubmit" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Nazad", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+        $(document).ready(function() {
+
+            $("#btnSubmit").click(function() {
+
+                var data = $("#myform").serialize();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Klijents/Create",
+                    data: data,
+                    success: function(response) {
+                        alert("Uspešno dodat klijent!");
+                        window.location = '/Klijents';
+                    }
+                });
+
+            });
+        });
+    </script>
+}

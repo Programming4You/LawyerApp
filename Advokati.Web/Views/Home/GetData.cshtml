@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Grafikon";
+}
+
+
+
+<div class="row">
+    <div class="sidenav col-sm-3 col-md-3 col-lg-3">
+        <ul class="nav navbar-nav mainmenu">
+            <li>@Html.ActionLink("Advokati", "Index", "Advokats")</li>
+            <li>@Html.ActionLink("Klijenti", "Index", "Klijents")</li>
+            <li>@Html.ActionLink("Predmeti", "Index", "Predmets")</li>
+            <li>@Html.ActionLink("Podpredmeti", "Index", "Podpredmets")</li>
+            <li>@Html.ActionLink("Taskovi", "Index", "Tasks")</li>
+            <li>@Html.ActionLink("Grafikon", "GetData", "Home")</li>
+            <li>@Html.ActionLink("Statistika", "Statistika", "Tasks")</li>
+            <li>
+                <a href="">Izveštaji</a>
+                <ul class="submenu">
+                    <li><a href="~/Report/AdvokatiTasks.aspx">Advokati</a></li>
+                    <li><a href="~/Report/KlijentiTasks.aspx">Klijenti</a></li>
+                </ul>
+            </li>
+            <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+        </ul>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-6" id="advokati">
+
+    </div>
+</div>
+
+@section Scripts{
+
+  <script>
+
+    var peraPeric = @ViewBag.PeraPeric;
+    var mikaMikic = @ViewBag.MikaMikic;
+    var lazaLazic = @ViewBag.LazaLazic;
+    var lukaLukic = @ViewBag.LukaLukic;
+    var marijaMaric = @ViewBag.MarijaMaric;
+    var jovanJovic = @ViewBag.JovanJovic;
+
+
+    $(document).ready(function () {
+
+        $.get("/Home/GetData", function () {
+
+            Highcharts.chart('advokati', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Udeo taskova advokata',
+                    margin: 70,
+                    style: {
+                        color: '#1381bc',
+                        fontWeight: 'bold'
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'task',
+                    colorByPoint: true,
+                    data: [{
+                        name: 'Pera Perić',
+                        y: peraPeric
+                    }, {
+                        name: 'Mika Mikić',
+                        y: mikaMikic
+                    }, {
+                        name: 'Laza Lazić',
+                        y: lazaLazic
+                    }, {
+                        name: 'Luka Lukić',
+                        y: lukaLukic
+                    }, {
+                        name: 'Marija Marić',
+                        y: marijaMaric
+                    }, {
+                        name: 'Jovan Jović',
+                        y: jovanJovic
+                    }]
+                }],
+                credits: {
+                    enabled: false
+                }
+            });
+
+        });
+    });
+
+   </script>
+}
