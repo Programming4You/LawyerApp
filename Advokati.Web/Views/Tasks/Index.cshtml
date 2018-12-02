@@ -45,11 +45,34 @@
         <br />
         @using (Html.BeginForm())
         {
-            <p>
-                Pretraži po podpredmetu: @Html.TextBox("SearchString")
-                <input type="submit" value="Search" />
-            </p>
+            <table>
+                <tr>
+                    <td class="tdFilter">Advokat</td>
+                    <td class="tdFilter">Podpredmet</td>
+                    <td class="tdFilter">Max cena</td>
+                    <td class="tdFilter">Max datum</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tdFilter">
+                        @Html.TextBox("searchAdvokat")
+                    </td>
+                    <td class="tdFilter">
+                        @Html.TextBox("searchPodpredmet")
+                    </td>
+                    <td class="tdFilter">
+                        <input type="number" name="price" min="1"/>
+                    </td>
+                    <td class="tdFilter">
+                        @Html.TextBox("endDate", null, new {@class = "date-picker"})
+                    </td>
+                    <td class="tdFilter">
+                        <input type="submit" value="Filter"/>
+                    </td>
+                </tr>
+            </table>
         }
+        <br/>
         <table class="table table-bordered">
             <tr class="headerColor">
                 <th>Advokat</th>
@@ -140,3 +163,17 @@
         }
     </script>
 }*@
+
+
+<script type="text/javascript">
+    $(function () {
+        $('.date-picker').datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+    }) 
+</script>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+}
