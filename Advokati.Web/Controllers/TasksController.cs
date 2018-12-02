@@ -59,7 +59,7 @@ namespace Advokati.Web.Controllers
             return View(taskovi.ToPagedList(pageNumber, pageSize));
         }
 
-
+ 
         // GET: Tasks/Details/5
         public ActionResult Details(int? id)
         {

@@ -17,7 +17,7 @@
             <li>@Html.ActionLink("Podpredmeti", "Index", "Podpredmets")</li>
             <li>@Html.ActionLink("Taskovi", "Index", "Tasks")</li>
             <li>@Html.ActionLink("Grafikon", "GetData", "Home")</li>
-            <li>@Html.ActionLink("Statistika", "Statistika", "Tasks")</li>
+            <li>@Html.ActionLink("Statistika", "Statistika", "Tasks")</li> 
             <li>
                 <a href="">Izveštaji</a>
                 <ul class="submenu">
@@ -61,18 +61,18 @@
                         @Html.TextBox("searchPodpredmet")
                     </td>
                     <td class="tdFilter">
-                        <input type="number" name="price" min="1"/>
+                        <input type="number" name="price" min="1" />
                     </td>
                     <td class="tdFilter">
-                        @Html.TextBox("endDate", null, new {@class = "date-picker"})
+                        @Html.TextBox("endDate", null, new { @class = "date-picker" })
                     </td>
                     <td class="tdFilter">
-                        <input type="submit" value="Filter"/>
+                        <input type="submit" value="Filter" />
                     </td>
                 </tr>
             </table>
         }
-        <br/>
+        <br />
         <table class="table table-bordered">
             <tr class="headerColor">
                 <th>Advokat</th>
@@ -120,12 +120,12 @@
                     <td>
                         @if (Session["admin"] != null || Session["UserID"].ToString() == item.AdvokatId.ToString())
                         {
-                            @Html.ActionLink("Izmeni", "Edit", new {id = item.Id}, new {@class = "btn btn-warning btn-sm form-control"})
+                            @Html.ActionLink("Izmeni", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-sm form-control" })
                         }
                         @if (Session["admin"] != null)
                         {
-                            @Html.ActionLink("Obriši", "Delete", new {id = item.Id}, new {@class = "btn btn-danger btn-sm form-control"})
-                        @*<a class="btn btn-danger btn-sm" onclick="deleteAjax('@Url.Action("ObrisiTask", "Tasks", new {id = @item.Id})')">Obriši</a>*@
+                            @Html.ActionLink("Obriši", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm form-control" })
+                            @*<a class="btn btn-danger btn-sm" onclick="deleteAjax('@Url.Action("ObrisiTask", "Tasks", new {id = @item.Id})')">Obriši</a>*@
                         }
                     </td>
                 </tr>

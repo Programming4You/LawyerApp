@@ -70,7 +70,6 @@ C:\Users\Milan\Documents\GitProjects\LawyerApp\Advokati.Infrastructure\bin\Debug
 C:\Users\Milan\Documents\GitProjects\LawyerApp\Advokati.Infrastructure\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Milan\Documents\GitProjects\LawyerApp\Advokati.Infrastructure\bin\Debug\EntityFramework.xml
 C:\Users\Milan\Documents\GitProjects\LawyerApp\Advokati.Infrastructure\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Milan\Documents\GitProjects\LawyerApp\Advokati.Infrastructure\obj\Debug\Advokati.Infrastructure.csprojAssemblyReference.cache
 C:\Users\Milan\Documents\GitProjects\LawyerApp\Advokati.Infrastructure\obj\Debug\Advokati.Infrastructure.Migrations.initial.resources
 C:\Users\Milan\Documents\GitProjects\LawyerApp\Advokati.Infrastructure\obj\Debug\Advokati.Infrastructure.Migrations.addedprice.resources
 C:\Users\Milan\Documents\GitProjects\LawyerApp\Advokati.Infrastructure\obj\Debug\Advokati.Infrastructure.Migrations.changedPrice.resources
@@ -82,3 +81,4 @@ C:\Users\Milan\Documents\GitProjects\LawyerApp\Advokati.Infrastructure\obj\Debug
 C:\Users\Milan\Documents\GitProjects\LawyerApp\Advokati.Infrastructure\obj\Debug\Advokati.Infrastructure.csproj.CopyComplete
 C:\Users\Milan\Documents\GitProjects\LawyerApp\Advokati.Infrastructure\obj\Debug\Advokati.Infrastructure.dll
 C:\Users\Milan\Documents\GitProjects\LawyerApp\Advokati.Infrastructure\obj\Debug\Advokati.Infrastructure.pdb
+C:\Users\Milan\Documents\GitProjects\LawyerApp\Advokati.Infrastructure\obj\Debug\Advokati.Infrastructure.csprojAssemblyReference.cache
