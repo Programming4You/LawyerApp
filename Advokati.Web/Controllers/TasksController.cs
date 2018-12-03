@@ -20,40 +20,30 @@ namespace Advokati.Web.Controllers
 
 
         // GET: Tasks
-        public ActionResult Index(string searchAdvokat, string searchPodpredmet, int? price, DateTime? endDate, int? page)
+        public ActionResult Index(string searchAdvokat, string searchPodpredmet, int? price, DateTime? endDate, int? page, string currentFilter)
         {
-            int pageSize = 4;
-
-            var taskovi = from t in _db.GetTasks().OrderByDescending(d => d.Datum)
-                          select t;
-
-            if (!String.IsNullOrEmpty(searchAdvokat) || !String.IsNullOrEmpty(searchPodpredmet) || price.HasValue || endDate.HasValue)
+            if (endDate != null)
             {
-                pageSize = 20;
+                page = 1;
+            }
+            else
+            {
+                endDate = string.IsNullOrEmpty(currentFilter) ? (DateTime?)null : DateTime.Parse(currentFilter);
+            }
 
-                if (!String.IsNullOrWhiteSpace(searchAdvokat))
-                {
-                    taskovi = taskovi.Where(t => t.Advokat.Ime.Contains(searchAdvokat) || t.Advokat.Prezime.Contains(searchAdvokat));
-                }
-
-                if (!String.IsNullOrWhiteSpace(searchPodpredmet))
-                {
-                    taskovi = taskovi.Where(t => t.Podpredmet.NazivPodpredmeta.Contains(searchPodpredmet));
-                }
-
-                if (price.HasValue)
-                {
-                    taskovi = taskovi.Where(t => t.Cena <= price);
-                }
-
-                if (endDate.HasValue)
-                {
-                    taskovi = taskovi.Where(t => t.Datum <= endDate);
-                }
-
+            if (endDate.HasValue)
+            {
+                ViewBag.CurrentFilter = endDate.Value.ToShortDateString();
             }
 
 
+            var taskovi = from t in _db.GetTasks().OrderByDescending(d => d.Datum)
+                where ((searchAdvokat == null || t.Advokat.Ime.Contains(searchAdvokat) || t.Advokat.Prezime.Contains(searchAdvokat)) &&
+                       (searchPodpredmet == null || t.Podpredmet.NazivPodpredmeta.Contains(searchPodpredmet)) &&
+                       (price == null || t.Cena <= price) && (endDate == null || t.Datum <= endDate))
+                select t;
+
+            int pageSize = 4;
             int pageNumber = (page ?? 1);
 
             return View(taskovi.ToPagedList(pageNumber, pageSize));
